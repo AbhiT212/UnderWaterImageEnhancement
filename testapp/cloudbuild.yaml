@@ -1,12 +1,14 @@
 steps:
 # 1. Build the Docker image
 - name: 'gcr.io/cloud-builders/docker'
+  dir: /workspace  # <-- ADDED: Force the step to run from the repo root
   args:
     [
       'build',
       '-t',
       'gcr.io/$PROJECT_ID/underwater-app:latest',
-      '.'
+      '-f', 'testapp/Dockerfile',  # <-- ADDED: Explicitly point to the Dockerfile
+      'testapp'  # <-- CHANGED: Tell Docker the build context is the 'testapp' folder
     ]
 
 # 2. Push the image to Artifact Registry
