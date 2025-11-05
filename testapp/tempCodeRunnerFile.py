@@ -1,0 +1,1 @@
+    st.error("Model could not be loaded. Please check the logs.")
